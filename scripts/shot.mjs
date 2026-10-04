@@ -72,8 +72,9 @@ async function main() {
         ? `window.scrollTo(0, (document.documentElement.scrollHeight - innerHeight) * ${parseFloat(t) / 100})`
         : (() => {
             // "selector" or "selector+120" (extra pixels past the element's top)
-            const m = t.match(/^(.*?)(?:\+(\d+))?$/);
-            return `(() => { const el = document.querySelector(${JSON.stringify(m[1])}); if (!el) return 'missing'; window.scrollTo(0, el.getBoundingClientRect().top + scrollY + ${Number(m[2] || 0)}); })()`;
+            const m = t.match(/^(.*?)(?:([+-])(\d+))?$/);
+            const off = (m[2] === '-' ? -1 : 1) * Number(m[3] || 0);
+            return `(() => { const el = document.querySelector(${JSON.stringify(m[1])}); if (!el) return 'missing'; window.scrollTo(0, el.getBoundingClientRect().top + scrollY + ${off}); })()`;
           })();
     const res = await send('Runtime.evaluate', { expression: expr, returnByValue: true });
     if (res.result?.result?.value === 'missing') console.log(`target not found: ${t}`);

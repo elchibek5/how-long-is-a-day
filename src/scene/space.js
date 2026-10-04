@@ -249,9 +249,10 @@ export function initSpace({ canvas, hero, stages }) {
     sunGroup.visible = h < 0.995;
     if (sunGroup.visible) {
       const portrait = camera.aspect < 0.9;
-      const R = portrait ? Math.min(0.38 * visH, 0.62 * visW) : 0.38 * visH;
-      const x0 = portrait ? -0.36 * visW : -0.42 * visW;
-      const y0 = portrait ? 0.22 * visH : 0.02 * visH;
+      // phones: a smaller Sun tucked into the top-left so the title below stays readable
+      const R = portrait ? Math.min(0.26 * visH, 0.5 * visW) : 0.38 * visH;
+      const x0 = portrait ? -0.3 * visW : -0.42 * visW;
+      const y0 = portrait ? 0.42 * visH : 0.02 * visH;
       const e = h * h * (3 - 2 * h);
       sunGroup.position.set(x0 - e * 0.22 * visW, y0 + e * 0.04 * visH, -e * 9);
       sunGroup.scale.setScalar(R);

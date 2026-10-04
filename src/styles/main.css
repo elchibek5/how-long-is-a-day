@@ -248,6 +248,9 @@ main, .footer { position: relative; z-index: 1; }
   .brand span:last-child { display: none; }
   .grid-2, .grid-3, .footer-inner { grid-template-columns: minmax(0, 1fr); }
   #hero { align-items: end; padding-bottom: 110px; }
+  /* dark scrim between the 3D Sun and the hero text on narrow screens */
+  #hero::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 74%; z-index: -1; pointer-events: none;
+    background: linear-gradient(to top, rgba(4, 5, 11, 0.95) 0%, rgba(4, 5, 11, 0.85) 70%, rgba(4, 5, 11, 0)); }
   .hero-inner { margin: 0; }
   .stage-sticky { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; align-items: start; padding-top: 68px; gap: 8px; }
   .planet-slot { order: -1; width: min(78vw, 42vh); }
