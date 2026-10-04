@@ -1,0 +1,173 @@
+/* Scroll-scrubbed solar-day diagram. Everything is scoped under #solarday. */
+
+#solarday {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(300px, 0.78fr);
+  column-gap: clamp(28px, 4vw, 72px);
+  align-items: start;
+}
+
+#solarday .scrolly-graphic {
+  position: sticky;
+  top: 8vh;
+  height: 84vh;
+  align-self: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+#solarday .sd-svg {
+  --u: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#solarday .scrolly-steps {
+  position: relative;
+  padding-bottom: 32vh; /* keeps the graphic pinned until the last step's motion has finished */
+  min-width: 0;
+}
+
+#solarday .step {
+  box-sizing: border-box;
+  min-height: 85vh;
+  opacity: 0.35;
+  transition: opacity 0.5s var(--ease-out);
+}
+#solarday .step.is-active { opacity: 1; }
+
+#solarday .sd-card {
+  position: relative;
+  max-width: 460px;
+  backdrop-filter: none; /* never blur over the WebGL canvas */
+  -webkit-backdrop-filter: none;
+  padding: 26px 28px 24px;
+  overflow: hidden;
+}
+#solarday .sd-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+}
+#solarday .sd-card .eyebrow { display: block; margin: 0 0 12px; }
+#solarday .sd-card h2,
+#solarday .sd-card h3 {
+  margin: 0 0 10px;
+  font: 600 clamp(20px, 1.7vw, 25px) / 1.2 var(--font-display);
+  letter-spacing: -0.012em;
+  color: var(--text);
+  text-wrap: balance;
+}
+#solarday .sd-card p {
+  margin: 0 0 10px;
+  font: 400 16px / 1.62 var(--font-body);
+  color: var(--text-2);
+  text-wrap: pretty;
+}
+#solarday .sd-card p:last-child { margin-bottom: 0; }
+#solarday .sd-card em,
+#solarday .sd-card .math { font-family: var(--font-serif); font-size: 1.12em; color: var(--rose); }
+
+/* ---------- SVG text ---------- */
+#solarday .sd-svg text { font-family: var(--font-body); }
+#solarday .sd-th { font-family: var(--font-serif); font-style: italic; font-weight: 400; fill: var(--rose); font-size: 1.25em; }
+
+#solarday .sd-far-label { font: 500 calc(12.5px * var(--u)) var(--font-body); fill: var(--text-2); letter-spacing: 0.01em; }
+#solarday .sd-sun-label { font: 600 calc(12px * var(--u)) var(--font-display); fill: var(--sun); letter-spacing: 0.14em; text-transform: uppercase; }
+#solarday .sd-small { font: 500 calc(11.5px * var(--u)) var(--font-body); fill: var(--muted); letter-spacing: 0.02em; }
+#solarday .sd-orbit-label { font: 500 calc(11.5px * var(--u)) var(--font-body); fill: var(--violet); letter-spacing: 0.04em; }
+#solarday .sd-theta {
+  font: italic 400 calc(25px * var(--u)) var(--font-serif);
+  fill: var(--rose);
+  paint-order: stroke;
+  stroke: #04050b;
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+#solarday .sd-par-caption { font: 500 calc(12px * var(--u)) var(--font-body); fill: var(--text-2); }
+#solarday .sd-note { font: 400 calc(11px * var(--u)) var(--font-body); fill: var(--muted); letter-spacing: 0.02em; }
+
+#solarday .sd-k { font: 600 calc(10.5px * var(--u)) var(--font-mono); letter-spacing: 0.16em; fill: var(--muted); }
+#solarday .sd-v { font: 500 calc(15px * var(--u)) var(--font-mono); fill: var(--text); font-variant-numeric: tabular-nums; }
+#solarday .sd-f { font: 500 calc(12px * var(--u)) var(--font-mono); fill: var(--rose); opacity: 0; transition: opacity 0.35s ease; }
+#solarday .sd-f.sd-f-back { fill: #e08ad8; }
+#solarday .sd-f.is-on { opacity: 1; }
+#solarday .sd-svg[data-size='s'] .sd-f { display: none; }
+
+#solarday .sd-cap { font: 600 calc(15px * var(--u)) var(--font-display); fill: var(--text); letter-spacing: -0.005em; }
+#solarday .sd-caption { opacity: 0; transition: opacity 0.45s var(--ease-out); }
+#solarday .sd-caption.is-on { opacity: 1; }
+
+#solarday .sd-eyebrow { font: 600 calc(10px * var(--u)) var(--font-mono); letter-spacing: 0.18em; fill: var(--sun); }
+#solarday .sd-card-line { font: 500 calc(14px * var(--u)) var(--font-body); fill: var(--text); }
+#solarday .sd-card-sum { font: 500 calc(12.5px * var(--u)) var(--font-mono); fill: var(--text-2); }
+#solarday .sd-c-spin { fill: var(--sky); }
+#solarday .sd-c-extra { fill: var(--rose); }
+#solarday .sd-c-solar { fill: var(--sun); font-weight: 600; }
+
+/* ---------- SVG shapes ---------- */
+#solarday .sd-glass { fill: rgba(10, 13, 27, 0.84); stroke: rgba(255, 255, 255, 0.09); stroke-width: 1; }
+#solarday .sd-glass-strong { fill: rgba(11, 14, 30, 0.92); stroke: rgba(255, 210, 122, 0.22); }
+#solarday .sd-par { stroke: var(--text-2); stroke-opacity: 0.55; stroke-width: 1.2; stroke-linecap: round; }
+#solarday .sd-tick { fill: none; stroke: var(--text); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+#solarday .sd-person-outline { stroke: #050816; fill: #050816; stroke-opacity: 0.85; fill-opacity: 0.85; }
+#solarday .sd-person-ghost { stroke: var(--sky); fill: var(--sky); opacity: 0.55; }
+#solarday .sd-spin-arrow path { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+#solarday .sd-sun-glow { transform-box: fill-box; transform-origin: center; animation: sd-breathe 6s ease-in-out infinite; }
+#solarday .sd-twinkle { transform-box: fill-box; transform-origin: center; animation: sd-twinkle 3.6s ease-in-out infinite; }
+@keyframes sd-breathe { 50% { transform: scale(1.05); opacity: 0.88; } }
+@keyframes sd-twinkle { 50% { transform: scale(0.82); opacity: 0.6; } }
+@media (prefers-reduced-motion: reduce) {
+  #solarday .sd-sun-glow,
+  #solarday .sd-twinkle { animation: none; }
+  #solarday .step,
+  #solarday .sd-caption,
+  #solarday .sd-f { transition: none; }
+}
+
+/* ---------- phones and small tablets ---------- */
+@media (max-width: 819.98px) {
+  #solarday {
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 0;
+  }
+  #solarday .scrolly-graphic {
+    top: 0;
+    height: 46vh;
+    z-index: 2;
+    background: var(--bg);
+    padding: 6px 0 8px;
+    box-sizing: border-box;
+  }
+  /* Steps scroll underneath: fade them out just below the graphic. */
+  #solarday .scrolly-graphic::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 36px;
+    background: linear-gradient(to bottom, var(--bg), rgba(4, 5, 11, 0));
+    pointer-events: none;
+  }
+  #solarday .scrolly-steps { padding-bottom: 12vh; }
+  #solarday .step {
+    min-height: 70vh;
+    padding-top: 24vh;
+  }
+  #solarday .sd-card {
+    max-width: none;
+    padding: 20px 20px 18px;
+  }
+  #solarday .sd-card p { font-size: 15.5px; }
+}

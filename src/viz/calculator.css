@@ -1,0 +1,185 @@
+/* Solar-day calculator. Everything is scoped under #calc. */
+
+#calc .calc {
+  --planet: var(--sun);
+  backdrop-filter: none; /* never blur over the WebGL canvas */
+  -webkit-backdrop-filter: none;
+  container-type: inline-size;
+  position: relative;
+  padding: clamp(20px, 3.2vw, 36px);
+  overflow: hidden;
+}
+#calc .calc::before {
+  content: '';
+  position: absolute;
+  inset: -40% -10% auto auto;
+  width: 60%;
+  aspect-ratio: 1;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--planet) 16%, transparent), transparent 70%);
+  pointer-events: none;
+  transition: background 0.6s ease;
+}
+
+/* ---------- header ---------- */
+#calc .calc-head { position: relative; display: grid; gap: 10px; margin-bottom: 26px; }
+#calc .calc-head .eyebrow { margin: 0; }
+#calc .calc-title {
+  margin: 0;
+  font: 600 clamp(22px, 2.6vw, 30px) / 1.15 var(--font-display);
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+#calc .calc-sub { margin: 0; max-width: 56ch; font: 400 15px / 1.55 var(--font-body); color: var(--text-2); }
+#calc .calc-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+#calc .calc-chip { display: inline-flex; align-items: center; gap: 8px; }
+#calc .calc-chip:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+#calc .calc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--c) 70%, transparent);
+  flex: none;
+}
+
+/* ---------- body ---------- */
+#calc .calc-body { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
+@container (min-width: 760px) {
+  #calc .calc-body { grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+}
+
+#calc .calc-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+#calc .calc-step {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 14px;
+  padding: 14px 0 16px;
+  border-top: 1px solid var(--line);
+}
+#calc .calc-step:first-child { border-top: 0; padding-top: 0; }
+#calc .calc-num {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font: 600 11px / 1 var(--font-mono);
+  color: var(--text-2);
+  border: 1px solid var(--line-2);
+  background: rgba(255, 255, 255, 0.03);
+}
+#calc .calc-step-body { min-width: 0; }
+#calc .calc-step-title {
+  margin: 6px 0 8px;
+  font: 600 11px / 1.2 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+#calc .calc-note { margin: 6px 0 0; font: 400 14px / 1.5 var(--font-body); color: var(--text-2); }
+#calc .calc-note.is-back { color: var(--rose); }
+#calc .calc-theta { font-family: var(--font-serif); font-size: 1.15em; color: var(--rose); }
+
+/* KaTeX: inherit colour, comfortable size, never overflow the card. */
+#calc .katex { font-size: 1.05em; color: inherit; }
+#calc .calc-tex { color: var(--text); overflow-x: auto; overflow-y: hidden; padding: 3px 0; scrollbar-width: thin; }
+#calc .calc-tex .katex { white-space: nowrap; }
+#calc .katex-display {
+  margin: 4px 0;
+  padding: 4px 0 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  color: var(--text);
+  scrollbar-width: thin;
+}
+#calc .katex-display.fleqn > .katex { padding-left: 0; }
+#calc .katex-display > .katex { text-align: left; }
+
+/* ---------- answer ---------- */
+#calc .calc-answer {
+  display: grid;
+  gap: 4px;
+  padding: 22px 22px 20px;
+  border-radius: var(--radius-sm);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+}
+#calc .calc-answer p { margin: 0; }
+#calc .calc-answer-label { font: 600 11px / 1.2 var(--font-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--sun); }
+#calc .calc-big {
+  margin-top: 6px !important;
+  font: 600 clamp(28px, 3.6vw, 40px) / 1.05 var(--font-display);
+  letter-spacing: -0.02em;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+#calc .calc-hours { font: 400 13px / 1.4 var(--font-mono); color: var(--muted); }
+
+#calc .calc-bars { display: grid; gap: 14px; margin: 18px 0 16px; }
+#calc .calc-bar-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: 'name val' 'track track';
+  gap: 6px 12px;
+  align-items: baseline;
+}
+#calc .calc-bar-name { grid-area: name; display: inline-flex; align-items: center; gap: 8px; font: 500 13px / 1.2 var(--font-body); color: var(--text-2); }
+#calc .calc-bar-val { grid-area: val; font: 500 13px / 1.2 var(--font-mono); color: var(--text); font-variant-numeric: tabular-nums; }
+#calc .calc-key { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+#calc .calc-key.is-spin { background: var(--sky); }
+#calc .calc-key.is-solar { background: var(--sun); }
+#calc .calc-track {
+  grid-area: track;
+  position: relative;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+#calc .calc-fill {
+  --w: 0;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transform-origin: left center;
+  transform: scaleX(var(--w));
+  transition: transform 0.9s var(--ease-out);
+}
+#calc .calc-fill.is-spin { background: linear-gradient(90deg, color-mix(in srgb, var(--sky) 55%, transparent), var(--sky)); }
+#calc .calc-fill.is-solar { background: linear-gradient(90deg, color-mix(in srgb, var(--sun) 55%, transparent), var(--sun)); }
+
+#calc .calc-insight { font: 400 15px / 1.55 var(--font-body); color: var(--text-2); }
+#calc .calc-insight b { color: var(--text); font-weight: 600; }
+#calc .calc-nasa {
+  justify-self: start;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px !important;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  font: 500 12.5px / 1.2 var(--font-mono);
+  color: var(--text-2);
+}
+#calc .calc-nasa[hidden] { display: none; }
+#calc .calc-nasa-k { font-weight: 600; letter-spacing: 0.14em; color: var(--muted); }
+#calc .calc-nasa.is-ok { border-color: color-mix(in srgb, var(--mint) 40%, transparent); background: color-mix(in srgb, var(--mint) 7%, transparent); }
+#calc .calc-nasa.is-ok .calc-nasa-v { color: var(--mint); font-weight: 600; }
+
+/* Entrance when the planet changes. */
+#calc .is-in { animation: calc-in 0.5s var(--ease-out) both; }
+#calc .calc-answer.is-in { animation-delay: 0.05s; }
+@keyframes calc-in { from { opacity: 0; transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) {
+  #calc .is-in { animation: none; }
+  #calc .calc-fill { transition: none; }
+}
+
+@media (max-width: 560px) {
+  #calc .calc-step { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  #calc .calc-num { display: none; }
+  #calc .calc-step-title { margin-top: 0; }
+  #calc .calc-answer { padding: 18px 16px; }
+}
