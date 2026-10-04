@@ -1,10 +1,9 @@
 /* Design tokens + shared component classes. Every module styles itself with these. */
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root {
   --bg: #04050b;
   --bg-2: #080b17;
-  --panel: rgba(13, 17, 33, 0.78);
+  --panel: rgba(12, 16, 31, 0.9);
   --panel-solid: #0d1121;
   --panel-2: rgba(22, 28, 52, 0.72);
   --line: rgba(255, 255, 255, 0.08);
@@ -21,7 +20,7 @@
   --rose: #ff6f9c;     /* the extra angle θ */
   --mint: #6ee7b7;     /* correct / confirmed */
 
-  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif; /* fonts: @fontsource, imported in main.js */
   --font-serif: 'Instrument Serif', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -38,8 +37,8 @@
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(14px) saturate(1.2);
-  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  /* no backdrop-filter: blurring over the live WebGL canvas costs a full
+     re-composite every frame and stalls slower laptops and projectors */
 }
 
 .eyebrow {
