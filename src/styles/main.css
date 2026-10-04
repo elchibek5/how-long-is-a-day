@@ -191,7 +191,6 @@ main, .footer { position: relative; z-index: 1; }
 .deriv li p { color: var(--text-2); margin: 4px 0 0; }
 .deriv li.key { background: linear-gradient(90deg, rgba(255, 182, 72, 0.12), transparent); border-radius: 14px; padding: 14px 14px 6px 52px; }
 .deriv li.key::before { background: var(--sun); color: #1a0f00; top: 14px; }
-.side { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; align-content: start; }
 .note { padding: 24px; }
 .note p { color: var(--text-2); font-size: 16px; }
 .note p:last-child { margin-bottom: 0; }

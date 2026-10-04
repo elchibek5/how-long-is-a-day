@@ -1,7 +1,34 @@
 {
   "name": "how-long-is-a-day",
-  "private": true,
   "version": "1.0.0",
+  "description": "Interactive 3D tour of the solar system that explains why every planet has a different day length, using simple geometry.",
+  "keywords": [
+    "solar-system",
+    "planets",
+    "day-length",
+    "sidereal-day",
+    "solar-day",
+    "astronomy",
+    "geometry",
+    "math-education",
+    "threejs",
+    "webgl",
+    "interactive",
+    "scrollytelling",
+    "generative-art",
+    "education"
+  ],
+  "homepage": "https://elchibek5.github.io/how-long-is-a-day/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elchibek5/how-long-is-a-day.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elchibek5/how-long-is-a-day/issues"
+  },
+  "license": "MIT",
+  "author": "Elchibek Dastanov",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,7 +43,9 @@
     "@fontsource/space-grotesk": "^5.3.0",
     "katex": "^0.19.0",
     "lenis": "^1.3.26",
-    "three": "^0.186.1",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
     "vite": "^6.4.3"
   }
 }
