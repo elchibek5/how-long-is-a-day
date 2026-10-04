@@ -1,0 +1,327 @@
+/* Daylight geometry lab — everything scoped under #daylight-lab. */
+#daylight-lab {
+  container: dl / inline-size;
+  --dl-surface: #0a0d1c;
+  --dl-night-ink: #6b78ff;          /* --night lifted for thin strokes on the dark ground */
+  --dl-inset: rgba(255, 255, 255, 0.025);
+}
+
+#daylight-lab .dl-card {
+  display: grid;
+  gap: 22px;
+  padding: clamp(18px, 3vw, 32px);
+  color: var(--text);
+  font-family: var(--font-body);
+  background:
+    radial-gradient(720px 360px at 0% 0%, rgba(255, 182, 72, 0.075), transparent 62%),
+    radial-gradient(640px 420px at 100% 30%, rgba(58, 76, 255, 0.08), transparent 65%),
+    var(--panel);
+}
+
+/* ---------- header ---------- */
+#daylight-lab .dl-head { display: grid; gap: 10px; max-width: 760px; }
+#daylight-lab .dl-head .eyebrow { margin: 0; }
+#daylight-lab .dl-title {
+  margin: 0;
+  font: 600 clamp(22px, 2.5vw, 30px)/1.15 var(--font-display);
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+#daylight-lab .dl-lede { margin: 0; font: 400 15px/1.6 var(--font-body); color: var(--text-2); }
+#daylight-lab .dl-var {
+  font: italic 1.2em/1 var(--font-serif);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text);
+}
+#daylight-lab .dl-var sub { font: 400 0.62em/1 var(--font-body); font-style: normal; margin-left: 1px; }
+
+/* ---------- controls ---------- */
+#daylight-lab .dl-controls { display: grid; gap: 14px; }
+#daylight-lab .dl-planets { display: flex; flex-wrap: wrap; gap: 8px; }
+#daylight-lab .dl-planet { display: inline-flex; align-items: center; gap: 8px; }
+#daylight-lab .dl-planet-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--c) 70%, transparent);
+}
+#daylight-lab .dl-planet[aria-pressed='true'] .dl-planet-dot { box-shadow: 0 0 0 2px rgba(10, 13, 26, 0.15); }
+#daylight-lab .chip:focus-visible,
+#daylight-lab .dl-sea-tick:focus-visible,
+#daylight-lab summary:focus-visible {
+  outline: 2px solid var(--sky);
+  outline-offset: 2px;
+}
+#daylight-lab .dl-planet-info { margin: 0; font: 500 12px/1.5 var(--font-mono); color: var(--muted); }
+
+#daylight-lab .dl-sliders {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 32px;
+  padding: 18px 20px 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--dl-inset);
+}
+#daylight-lab .dl-range { gap: 12px; align-content: start; }
+#daylight-lab .dl-range label { align-items: baseline; gap: 12px; flex-wrap: wrap; }
+#daylight-lab .dl-range-name { font: 600 13px/1.2 var(--font-body); color: var(--text); }
+#daylight-lab .dl-out { font: 500 12.5px/1.3 var(--font-mono); color: var(--text); text-align: right; margin-left: auto; }
+#daylight-lab .range input[type='range'] { margin: 4px 0; cursor: pointer; }
+#daylight-lab .range input[type='range']:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 7px rgba(124, 200, 255, 0.4); }
+#daylight-lab .range input[type='range']:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 7px rgba(124, 200, 255, 0.4); }
+#daylight-lab .dl-quick { display: flex; flex-wrap: wrap; gap: 6px; }
+#daylight-lab .dl-qchip { font-size: 12px; padding: 7px 11px; }
+#daylight-lab .dl-qlat { font-family: var(--font-mono); font-size: 11px; opacity: 0.72; }
+
+#daylight-lab .dl-sea-ticks { position: relative; height: 20px; }
+#daylight-lab .dl-sea-tick {
+  position: absolute; top: 0;
+  left: calc(10px + (100% - 20px) * var(--p));
+  transform: translateX(-50%);
+  appearance: none; border: 0; background: none;
+  padding: 2px 4px; border-radius: 6px;
+  font: 500 11px/1.3 var(--font-mono);
+  color: var(--muted);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+#daylight-lab .dl-sea-tick:first-child { transform: translateX(-14px); }
+#daylight-lab .dl-sea-tick:hover { color: var(--text-2); }
+#daylight-lab .dl-sea-tick.is-active { color: var(--sun); }
+
+/* ---------- views ---------- */
+#daylight-lab .dl-views { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+#daylight-lab .dl-view {
+  margin: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 6px;
+  padding: 16px 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background:
+    radial-gradient(90% 70% at 50% 45%, rgba(46, 60, 140, 0.16), transparent 72%),
+    rgba(3, 5, 14, 0.55);
+}
+#daylight-lab .dl-view-title {
+  font: 600 11px/1.3 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+#daylight-lab .dl-svg { display: block; width: 100%; max-width: 440px; height: auto; justify-self: center; overflow: visible; }
+#daylight-lab .dl-view-cap { margin: 0; font: 400 13px/1.55 var(--font-body); color: var(--muted); }
+#daylight-lab .dl-size { display: flex; gap: 12px; align-items: center; }
+#daylight-lab .dl-size p { margin: 0; }
+#daylight-lab .dl-size b { font: 600 12.5px var(--font-mono); color: var(--text); }
+#daylight-lab .dl-size .dl-var { color: var(--text-2); }
+#daylight-lab .dl-size-ico { flex: none; width: 34px; height: 34px; }
+#daylight-lab .dl-size-R { fill: none; stroke: rgba(255, 255, 255, 0.35); stroke-width: 1; stroke-dasharray: 2 2.5; }
+#daylight-lab .dl-size-r { fill: rgba(255, 182, 72, 0.14); stroke: var(--sun); stroke-width: 1.5; }
+
+/* svg text */
+#daylight-lab .dl-t { font: 500 11.5px var(--font-body); fill: var(--text-2); }
+#daylight-lab .dl-t-cap { font: 600 10px var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; fill: var(--muted); }
+#daylight-lab .dl-t-side { font: 600 10px var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; fill: var(--muted); }
+#daylight-lab .dl-t-eq { font-size: 10.5px; fill: var(--text-2); }
+#daylight-lab .dl-t-chord { font: 600 10.5px var(--font-body); fill: var(--text); }
+#daylight-lab .dl-t-pt { font: 500 11px var(--font-body); fill: var(--text-2); }
+#daylight-lab .dl-t-hour { font: 600 10px var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; fill: var(--muted); }
+#daylight-lab .dl-math { font: italic 21px var(--font-serif); fill: var(--text); }
+#daylight-lab .dl-ns { font: 600 14px var(--font-display); fill: var(--text); }
+#daylight-lab .dl-halo { paint-order: stroke; stroke: rgba(5, 7, 18, 0.88); stroke-width: 3.5px; stroke-linejoin: round; }
+
+/* view A */
+#daylight-lab .dl-st-lit0 { stop-color: #ffd37f; stop-opacity: 0.62; }
+#daylight-lab .dl-st-lit1 { stop-color: #e2963a; stop-opacity: 0.34; }
+#daylight-lab .dl-st-lit2 { stop-color: #8a5414; stop-opacity: 0.26; }
+#daylight-lab .dl-st-n0 { stop-color: #131b58; stop-opacity: 1; }
+#daylight-lab .dl-st-n1 { stop-color: #070a24; stop-opacity: 1; }
+#daylight-lab .dl-st-h0 { stop-color: #ffb648; stop-opacity: 0.22; }
+#daylight-lab .dl-st-h1 { stop-color: #ffb648; stop-opacity: 0; }
+#daylight-lab .dl-rays line { stroke: var(--sun); stroke-width: 1.4; stroke-opacity: 0.55; stroke-linecap: round; }
+#daylight-lab .dl-ray-head { fill: var(--sun); fill-opacity: 0.8; }
+#daylight-lab .dl-ref { stroke: rgba(255, 255, 255, 0.42); stroke-width: 1; stroke-dasharray: 3 4; }
+#daylight-lab .dl-term { stroke: rgba(255, 255, 255, 0.3); stroke-width: 1; }
+#daylight-lab .dl-limb { fill: none; stroke: rgba(255, 255, 255, 0.16); stroke-width: 1; }
+#daylight-lab .dl-eq { stroke: rgba(255, 255, 255, 0.5); stroke-width: 1.1; }
+#daylight-lab .dl-axis { stroke: var(--sky); stroke-width: 2; stroke-linecap: round; }
+#daylight-lab .dl-pole { fill: var(--sky); stroke: var(--dl-surface); stroke-width: 2; }
+#daylight-lab .dl-phi-ray { stroke: rgba(255, 255, 255, 0.5); stroke-width: 1; stroke-dasharray: 3 3; }
+#daylight-lab .dl-angle { fill: none; stroke: var(--text); stroke-width: 1.4; stroke-opacity: 0.9; }
+#daylight-lab .dl-chord { stroke-width: 5; stroke-linecap: round; }
+#daylight-lab .dl-chord-lit { stroke: var(--sun); }
+#daylight-lab .dl-chord-dark { stroke: var(--dl-night-ink); }
+#daylight-lab .dl-chord-glow { stroke: var(--sun); stroke-width: 14; stroke-opacity: 0.24; stroke-linecap: round; filter: blur(3px); }
+#daylight-lab .dl-cross { fill: #fff; stroke: var(--dl-surface); stroke-width: 2; }
+
+/* view B */
+#daylight-lab .dl-fill-lit { fill: var(--sun); fill-opacity: 0.1; }
+#daylight-lab .dl-fill-dark { fill: var(--night); fill-opacity: 0.17; }
+#daylight-lab .dl-tick { stroke: rgba(130, 145, 255, 0.5); stroke-width: 1.4; stroke-linecap: round; }
+#daylight-lab .dl-tick.is-major { stroke-width: 2; }
+#daylight-lab .dl-tick.is-lit { stroke: var(--sun); }
+#daylight-lab .dl-arc { fill: none; stroke-width: 7; }
+#daylight-lab .dl-arc-lit { stroke: var(--sun); }
+#daylight-lab .dl-arc-dark { stroke: var(--dl-night-ink); }
+#daylight-lab .dl-arc-glow { fill: none; stroke: var(--sun); stroke-width: 12; stroke-opacity: 0.4; }
+#daylight-lab .dl-chord-b { stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.2; stroke-dasharray: 4 4; }
+#daylight-lab .dl-radius { stroke: rgba(255, 255, 255, 0.36); stroke-width: 1; }
+#daylight-lab .dl-ang-arc { fill: none; stroke: var(--sun); stroke-width: 1.6; }
+#daylight-lab .dl-center { fill: rgba(255, 255, 255, 0.75); }
+#daylight-lab .dl-chev { fill: none; stroke: var(--dl-surface); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+#daylight-lab .dl-sunpt { fill: #fff; stroke: var(--dl-surface); stroke-width: 2; }
+#daylight-lab .dl-pill { fill: rgba(8, 11, 24, 0.88); stroke: rgba(255, 255, 255, 0.14); stroke-width: 1; }
+#daylight-lab .dl-ang-t { font: 500 12.5px var(--font-mono); fill: var(--text); }
+#daylight-lab .dl-ang-var { font: italic 16px var(--font-serif); }
+#daylight-lab .dl-ang-sub { font: 400 11px var(--font-serif); }
+#daylight-lab .dl-ang-val { font: 600 13px var(--font-mono); fill: var(--sun); }
+#daylight-lab .dl-polar-t { font: 600 14px var(--font-display); fill: var(--text); letter-spacing: -0.01em; }
+
+/* ---------- readout ---------- */
+#daylight-lab .dl-readout {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px 20px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--dl-inset);
+}
+#daylight-lab .dl-stat { align-content: start; }
+#daylight-lab .dl-stat span .dl-var { font-size: 1.35em; }
+#daylight-lab .dl-stat b { font-size: 24px; letter-spacing: -0.01em; }
+#daylight-lab .dl-stat-sub { font: 400 12.5px/1.4 var(--font-body); color: var(--text-2); }
+#daylight-lab .dl-meter { grid-column: 1 / -1; display: flex; gap: 2px; height: 8px; }
+#daylight-lab .dl-meter-day { flex: 0 0 50%; border-radius: 999px; background: linear-gradient(90deg, var(--sun-2), var(--sun)); }
+#daylight-lab .dl-meter-night { flex: 1 1 0; border-radius: 999px; background: var(--night); }
+
+/* ---------- formula ---------- */
+#daylight-lab .dl-formula {
+  display: grid;
+  gap: 10px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(165, 148, 255, 0.07), rgba(165, 148, 255, 0.02));
+}
+#daylight-lab .dl-formula-label {
+  margin: 0;
+  font: 600 11px/1.3 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+#daylight-lab .dl-tex { font-size: 17px; line-height: 1.9; color: var(--text); overflow-x: auto; overflow-y: hidden; }
+#daylight-lab .dl-tex .katex { font-size: 1.1em; }
+#daylight-lab .dl-note {
+  margin: 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 16px;
+  border: 1px solid rgba(165, 148, 255, 0.3);
+  border-radius: 14px;
+  background: rgba(165, 148, 255, 0.08);
+  font: 400 13.5px/1.55 var(--font-body);
+  color: var(--text-2);
+}
+#daylight-lab .dl-note[hidden] { display: none; }
+#daylight-lab .dl-note-icon {
+  flex: none;
+  display: grid; place-items: center;
+  width: 20px; height: 20px; margin-top: 1px;
+  border-radius: 50%;
+  background: var(--violet);
+  color: #0a0d1a;
+  font: italic 600 13px/1 var(--font-serif);
+}
+
+/* ---------- year chart ---------- */
+#daylight-lab .dl-chart {
+  margin: 0;
+  display: grid;
+  gap: 12px;
+  padding: 18px 20px 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--dl-inset);
+}
+#daylight-lab .dl-chart-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 18px; }
+#daylight-lab .dl-chart-title { font: 600 15px/1.3 var(--font-display); color: var(--text); }
+#daylight-lab .dl-chart-key { display: inline-flex; align-items: center; gap: 8px; font: 500 12px/1.3 var(--font-body); color: var(--muted); }
+#daylight-lab .dl-key-dash {
+  width: 22px; height: 0;
+  border-top: 1.5px dashed rgba(255, 255, 255, 0.5);
+}
+#daylight-lab .dl-chart-wrap { position: relative; }
+#daylight-lab .dl-chart-svg { display: block; width: 100%; touch-action: pan-y; cursor: crosshair; user-select: none; -webkit-user-select: none; }
+#daylight-lab .dl-c-grid { stroke: rgba(255, 255, 255, 0.07); stroke-width: 1; shape-rendering: crispEdges; }
+#daylight-lab .dl-c-base { stroke: rgba(255, 255, 255, 0.18); stroke-width: 1; shape-rendering: crispEdges; }
+#daylight-lab .dl-c-lab { font: 500 10.5px var(--font-mono); fill: var(--muted); font-variant-numeric: tabular-nums; }
+#daylight-lab .dl-c-half { stroke: rgba(255, 255, 255, 0.42); stroke-width: 1; stroke-dasharray: 4 4; }
+#daylight-lab .dl-c-night { fill: var(--night); fill-opacity: 0.1; }
+#daylight-lab .dl-c-line { fill: none; stroke: var(--sun); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+#daylight-lab .dl-c-now { stroke: var(--sun); stroke-opacity: 0.4; stroke-width: 1; }
+#daylight-lab .dl-c-dot { fill: var(--sun); stroke: var(--dl-surface); stroke-width: 2; }
+#daylight-lab .dl-c-pill { fill: rgba(8, 11, 24, 0.9); stroke: rgba(255, 182, 72, 0.35); stroke-width: 1; }
+#daylight-lab .dl-c-val { font: 600 11.5px var(--font-mono); fill: var(--text); }
+#daylight-lab .dl-c-cross { stroke: rgba(255, 255, 255, 0.4); stroke-width: 1; pointer-events: none; }
+#daylight-lab .dl-c-hdot { fill: var(--dl-surface); stroke: var(--text); stroke-width: 2; pointer-events: none; }
+#daylight-lab .dl-tip {
+  position: absolute; left: 0; top: 0;
+  display: grid; gap: 2px;
+  padding: 8px 11px;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  background: rgba(10, 13, 28, 0.94);
+  box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, calc(-100% - 14px));
+  transition: opacity 0.15s;
+}
+#daylight-lab .dl-tip.is-on { opacity: 1; }
+#daylight-lab .dl-tip b { font: 600 14px/1.2 var(--font-display); color: var(--text); }
+#daylight-lab .dl-tip span { font: 500 11.5px/1.3 var(--font-body); color: var(--text-2); }
+
+#daylight-lab .dl-table summary { cursor: pointer; width: max-content; font: 500 12.5px/1.4 var(--font-body); color: var(--muted); border-radius: 6px; }
+#daylight-lab .dl-table summary:hover { color: var(--text-2); }
+#daylight-lab .dl-table table { width: 100%; margin-top: 10px; border-collapse: collapse; font: 400 12.5px/1.4 var(--font-mono); font-variant-numeric: tabular-nums; }
+#daylight-lab .dl-table th,
+#daylight-lab .dl-table td { padding: 7px 8px; text-align: left; border-bottom: 1px solid var(--line); }
+#daylight-lab .dl-table th { font: 500 11px/1.3 var(--font-body); color: var(--muted); }
+#daylight-lab .dl-table td { color: var(--text-2); }
+
+/* ---------- narrow ---------- */
+@container dl (max-width: 760px) {
+  #daylight-lab .dl-views { grid-template-columns: 1fr; }
+  #daylight-lab .dl-sliders { grid-template-columns: 1fr; }
+  #daylight-lab .dl-readout { grid-template-columns: 1fr 1fr; }
+}
+@container dl (max-width: 520px) {
+  #daylight-lab .dl-card { gap: 18px; }
+  #daylight-lab .dl-sliders,
+  #daylight-lab .dl-readout,
+  #daylight-lab .dl-formula,
+  #daylight-lab .dl-chart { padding: 14px; }
+  #daylight-lab .dl-view { padding: 14px 12px 16px; }
+  #daylight-lab .dl-stat b { font-size: 20px; }
+  #daylight-lab .dl-tex { font-size: 14.5px; }
+  #daylight-lab .dl-planet { padding: 8px 12px; }
+  /* the diagrams scale down with the screen; lift their text so it stays readable */
+  #daylight-lab .dl-t { font-size: 13px; }
+  #daylight-lab .dl-t-cap,
+  #daylight-lab .dl-t-side,
+  #daylight-lab .dl-t-hour { font-size: 11px; }
+  #daylight-lab .dl-t-pt { font-size: 12.5px; }
+  #daylight-lab .dl-t-eq,
+  #daylight-lab .dl-t-chord { font-size: 12px; }
+  #daylight-lab .dl-math { font-size: 23px; }
+  #daylight-lab .dl-ns { font-size: 15px; }
+  #daylight-lab .dl-ang-t { font-size: 13.5px; }
+  #daylight-lab .dl-polar-t { font-size: 15px; }
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daylight lab + comparison — dev harness</title>
+    <link rel="stylesheet" href="/src/styles/tokens.css" />
+    <style>
+      html, body { margin: 0; background: #04050b; color: var(--text); font-family: var(--font-body); }
+      .wrap { max-width: 1120px; margin: 0 auto; padding: 48px 24px 96px; box-sizing: border-box; }
+      .spacer { height: 72px; }
+      @media (max-width: 600px) { .wrap { padding: 24px 16px 64px; } }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div id="daylight-lab"></div>
+      <div class="spacer"></div>
+      <div id="compare"></div>
+    </main>
+    <script type="module">
+      import { initDaylight } from '/src/viz/daylight.js';
+      import { initCompare } from '/src/viz/compare.js';
+      initDaylight(document.getElementById('daylight-lab'));
+      initCompare(document.getElementById('compare'));
+    </script>
+  </body>
+</html>
