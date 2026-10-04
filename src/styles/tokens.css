@@ -1,0 +1,118 @@
+/* Design tokens + shared component classes. Every module styles itself with these. */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+  --bg: #04050b;
+  --bg-2: #080b17;
+  --panel: rgba(13, 17, 33, 0.78);
+  --panel-solid: #0d1121;
+  --panel-2: rgba(22, 28, 52, 0.72);
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.16);
+  --text: #eef1f8;
+  --text-2: #b8c0d4;
+  --muted: #7f88a0;
+
+  --sun: #ffb648;      /* daylight, the Sun, highlights */
+  --sun-2: #ff7a3d;    /* sunrise orange */
+  --night: #3a4cff;    /* night side */
+  --sky: #7cc8ff;      /* spin / rotation */
+  --violet: #a594ff;   /* orbit */
+  --rose: #ff6f9c;     /* the extra angle θ */
+  --mint: #6ee7b7;     /* correct / confirmed */
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --radius: 20px;
+  --radius-sm: 12px;
+  --shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Glass panel used by cards, diagrams and controls */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+}
+
+.eyebrow {
+  font: 600 12px/1 var(--font-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sun);
+}
+
+.mono { font-family: var(--font-mono); }
+
+/* Pill buttons / segmented chips */
+.chip {
+  appearance: none;
+  border: 1px solid var(--line-2);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-2);
+  font: 500 13px/1 var(--font-body);
+  padding: 9px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.chip:hover { color: var(--text); border-color: rgba(255, 255, 255, 0.3); }
+.chip[aria-pressed='true'], .chip.is-active {
+  background: var(--text);
+  color: #0a0d1a;
+  border-color: var(--text);
+}
+
+.btn {
+  appearance: none;
+  border: 0;
+  background: linear-gradient(135deg, var(--sun), var(--sun-2));
+  color: #1a0f00;
+  font: 600 14px/1 var(--font-body);
+  padding: 12px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.08); }
+
+/* Range slider */
+.range { display: grid; gap: 8px; }
+.range label { display: flex; justify-content: space-between; font: 500 13px/1.2 var(--font-body); color: var(--text-2); }
+.range output { font-family: var(--font-mono); color: var(--text); }
+.range input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--sun) var(--fill, 50%), rgba(255, 255, 255, 0.12) var(--fill, 50%));
+  outline: none;
+}
+.range input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #fff; border: 3px solid var(--sun);
+  box-shadow: 0 0 0 6px rgba(255, 182, 72, 0.15);
+  cursor: grab;
+}
+.range input[type='range']::-moz-range-thumb {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: #fff; border: 3px solid var(--sun); cursor: grab;
+}
+
+/* Stat readout: big number + small label */
+.stat { display: grid; gap: 4px; }
+.stat b { font: 600 22px/1.1 var(--font-display); color: var(--text); }
+.stat span { font: 500 11px/1.2 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+/* Diagram text inside SVG */
+.svg-label { font: 500 13px var(--font-body); fill: var(--text-2); }
+.svg-label-strong { font: 600 14px var(--font-display); fill: var(--text); }
+.svg-math { font: italic 18px var(--font-serif); fill: var(--text); }
