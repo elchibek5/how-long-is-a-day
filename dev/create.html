@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Create · Sunlight Mandalas (dev harness)</title>
+    <link rel="stylesheet" href="/src/styles/tokens.css" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+      body { margin: 0; background: #04050b; color: var(--text); font-family: var(--font-body); }
+      .wrap { max-width: 1200px; margin: 0 auto; padding: 48px 24px 96px; }
+      .spacer { height: 96px; }
+      @media (max-width: 600px) { .wrap { padding: 28px 16px 64px; } }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div id="mandala-gallery"></div>
+      <div class="spacer"></div>
+      <div id="world-lab"></div>
+    </main>
+    <script type="module">
+      import { initMandalaGallery } from '/src/create/gallery.js';
+      import { initWorldLab } from '/src/create/lab.js';
+      initMandalaGallery(document.getElementById('mandala-gallery'));
+      window.__lab = initWorldLab(document.getElementById('world-lab'));
+    </script>
+  </body>
+</html>
