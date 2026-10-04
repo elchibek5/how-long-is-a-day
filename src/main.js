@@ -16,19 +16,13 @@ import 'katex/dist/katex.min.css';
 import katex from 'katex';
 import Lenis from 'lenis';
 import { PLANETS } from './data/planets.js';
-import { solarDayHours, degreesPerHour, formatDuration, clamp } from './lib/astro.js';
+import { solarDayHours, formatDuration, clamp } from './lib/astro.js';
 
 document.documentElement.classList.add('js');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const smoothstep = (a, b, x) => { const t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
 
 // ---------- tour stages (built from the data so every number stays in sync) ----------
-function fmtDeg(d) {
-  const a = Math.abs(d);
-  const s = a < 1 ? a.toFixed(3) : a.toFixed(2);
-  return `${d < 0 ? '−' : ''}${s}°`;
-}
-
 function buildTour() {
   const tour = document.getElementById('tour');
   tour.innerHTML = PLANETS.map((p, i) => {
@@ -41,16 +35,13 @@ function buildTour() {
     <div class="planet-stage" data-planet="${p.id}">
       <div class="stage-sticky">
         <article class="planet-card panel" style="--accent:${p.accent}">
-          <p class="eyebrow">Planet ${i + 1} of 8 · ${p.distanceMkm.toLocaleString('en-US')} million km from the Sun</p>
+          <p class="eyebrow">Planet ${i + 1} of 8</p>
           <h3 class="planet-name">${p.name}</h3>
           <p class="planet-tagline">${p.tagline}</p>
           <dl class="planet-stats">
             <div class="hl"><dt>Solar day</dt><dd>${formatDuration(day, { seconds: true })}</dd></div>
             <div><dt>One spin${p.retrograde ? ' (backwards)' : ''}</dt><dd>${formatDuration(p.spinHours, { seconds: true })}</dd></div>
-            <div><dt>One year</dt><dd>${formatDuration(p.yearDays * 24)}</dd></div>
             <div><dt>Tilt</dt><dd>${p.tiltDeg}°</dd></div>
-            <div><dt>Daylight at equator</dt><dd>${formatDuration(day / 2)}</dd></div>
-            <div><dt>Turns per hour</dt><dd>${fmtDeg(degreesPerHour(p))}</dd></div>
           </dl>
           <div class="ratio">
             <p class="ratio-label"><span>Day compared with Earth's</span><b>${ratioText} an Earth day</b></p>
@@ -178,10 +169,8 @@ boot('space', './scene/space.js', async (m) => {
   await (api && api.ready);
 }).finally(hideLoader);
 
-boot('dial', './viz/dial.js', (m) => m.initDial(document.getElementById('dial')));
 boot('solarday', './viz/solarday.js', (m) => m.initSolarDay(document.getElementById('solarday')));
-boot('calculator', './viz/calculator.js', (m) => m.initCalculator(document.getElementById('calc')));
-boot('daylight', './viz/daylight.js', (m) => m.initDaylight(document.getElementById('daylight-lab')));
-boot('compare', './viz/compare.js', (m) => m.initCompare(document.getElementById('compare')));
+boot('calculator', './viz/calculator.js', (m) => m.initCalculator(document.getElementById('calc'), { simple: true }));
+boot('daylight', './viz/daylight.js', (m) => m.initDaylight(document.getElementById('daylight-lab'), { simple: true }));
 boot('gallery', './create/gallery.js', (m) => m.initMandalaGallery(document.getElementById('mandala-gallery')));
 boot('lab', './create/lab.js', (m) => m.initWorldLab(document.getElementById('world-lab')));

@@ -81,7 +81,7 @@ function h(tag, className, html) {
 }
 
 /** Builds the planet calculator inside #calc. */
-export function initCalculator(root) {
+export function initCalculator(root, { simple = false } = {}) {
   root = typeof root === 'string' ? document.querySelector(root) : root || document.getElementById('calc');
   if (!root) return null;
   const uid = `calc${++instances}`;
@@ -98,16 +98,28 @@ export function initCalculator(root) {
   card.setAttribute('aria-labelledby', `${uid}-title`);
   card.innerHTML = `
     <header class="calc-head">
-      <p class="eyebrow">Calculator</p>
-      <h3 class="calc-title" id="${uid}-title">Work out any planet’s day</h3>
-      <p class="calc-sub">Pick a planet. Every number below is computed live from its spin and its year.</p>
+      <p class="eyebrow">Check the rule</p>
+      <h3 class="calc-title" id="${uid}-title">Does it match NASA?</h3>
+      <p class="calc-sub">Pick a planet. The rule uses only its spin and its year.</p>
       <div class="calc-chips" role="group" aria-label="Choose a planet"></div>
     </header>
     <div class="calc-body">
-      <ol class="calc-steps"></ol>
+      <ol class="calc-steps" id="${uid}-steps"></ol>
       <aside class="calc-answer" aria-live="polite"></aside>
-    </div>`;
+    </div>
+    <button type="button" class="chip calc-toggle" aria-controls="${uid}-steps" aria-expanded="false" hidden>Show the working</button>`;
   root.appendChild(card);
+  // Simple mode shows just the answer; the step-by-step working opens on demand.
+  const toggle = card.querySelector('.calc-toggle');
+  if (simple) {
+    card.classList.add('is-simple');
+    toggle.hidden = false;
+    toggle.addEventListener('click', () => {
+      const open = card.classList.toggle('is-simple') === false;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.textContent = open ? 'Hide the working' : 'Show the working';
+    });
+  }
   const chipsRow = card.querySelector('.calc-chips');
   const stepsEl = card.querySelector('.calc-steps');
   const answerEl = card.querySelector('.calc-answer');

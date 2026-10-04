@@ -157,7 +157,7 @@ function pickStep(max, days) {
   return steps.find((s) => s >= max / 5) || steps[steps.length - 1];
 }
 
-export function initDaylight(root) {
+export function initDaylight(root, { simple = false } = {}) {
   if (!root) return null;
   const uid = `dl${Math.random().toString(36).slice(2, 8)}`;
   const state = { planetId: 'earth', lat: 37.8, season: 90 };
@@ -397,6 +397,18 @@ export function initDaylight(root) {
     const tr = h('tr', null, tbody);
     return [h('td', null, tr), h('td', null, tr), h('td', null, tr), h('td', null, tr)];
   });
+
+  /* ---------- simple mode: the two views + daylight; the formula and chart open on demand ---------- */
+  if (simple) {
+    card.classList.add('dl-simple');
+    const more = h('button', { type: 'button', class: 'chip dl-more', 'aria-expanded': 'false' }, card, 'Show the math');
+    more.addEventListener('click', () => {
+      const open = !card.classList.toggle('dl-simple');
+      more.setAttribute('aria-expanded', String(open));
+      more.textContent = open ? 'Hide the math' : 'Show the math';
+      schedule(); // the chart measures itself, so redraw once it is visible
+    });
+  }
 
   /* ---------- view A update ---------- */
   function updateSide(m) {

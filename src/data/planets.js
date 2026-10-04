@@ -18,7 +18,7 @@ export const PLANETS = [
     glow: '#9b8f80',
     texture: 'textures/mercury.jpg',
     tagline: 'One day lasts two whole years',
-    fact: 'Mercury spins exactly 3 times for every 2 trips around the Sun. Put those two motions together and one sunrise-to-sunrise day lasts 176 Earth days — two full Mercury years.',
+    fact: 'It spins 3 times for every 2 orbits, so sunrise to sunrise takes 176 Earth days: two Mercury years.',
   },
   {
     id: 'venus',
@@ -33,7 +33,7 @@ export const PLANETS = [
     glow: '#e8b25c',
     texture: 'textures/venus_atmosphere.jpg',
     tagline: 'The Sun rises in the west',
-    fact: 'Venus spins backwards, and so slowly that one spin (243 Earth days) takes longer than its year (225 days). Because it turns against its orbit, the Sun comes back sooner: a solar day is 117 Earth days.',
+    fact: 'It spins backwards, so the Sun rises in the west. One spin takes longer than its whole year.',
   },
   {
     id: 'earth',
@@ -48,7 +48,7 @@ export const PLANETS = [
     glow: '#4d9bff',
     texture: 'textures/earth_daymap.jpg',
     tagline: 'One spin is not one day',
-    fact: 'Earth finishes a full spin in 23 h 56 m 4 s, yet the Sun takes 24 h to return. The missing 3 m 56 s is pure geometry — and the key to every other planet on this page.',
+    fact: 'One spin takes 23 h 56 m, yet the Sun returns every 24 h. The missing 4 minutes is geometry.',
   },
   {
     id: 'mars',
@@ -63,7 +63,7 @@ export const PLANETS = [
     glow: '#e2552e',
     texture: 'textures/mars.jpg',
     tagline: 'Almost like home — 39 minutes off',
-    fact: 'A Mars day, called a sol, lasts 24 h 39 m 35 s. NASA rover teams have lived on "Mars time", starting work about 40 minutes later every Earth day.',
+    fact: 'A Mars day, called a sol, is 39 minutes longer than ours. Rover teams have lived on Mars time.',
   },
   {
     id: 'jupiter',
@@ -78,7 +78,7 @@ export const PLANETS = [
     glow: '#d8935a',
     texture: 'textures/jupiter.jpg',
     tagline: 'The biggest planet, the shortest day',
-    fact: 'Jupiter is 11 times wider than Earth yet spins in under 10 hours. Its equator races along at about 45,000 km/h — fast enough to squash the planet into a visible oval.',
+    fact: '11 times wider than Earth, yet it spins in under 10 hours, so fast that it bulges at the equator.',
   },
   {
     id: 'saturn',
@@ -94,7 +94,7 @@ export const PLANETS = [
     texture: 'textures/saturn.jpg',
     ring: 'textures/saturn_ring_alpha.png',
     tagline: 'A day measured by waves in its rings',
-    fact: "Saturn has no solid surface to watch, so its day was uncertain for decades. In 2019 scientists timed it from waves rippling through its rings: 10 h 33 m 38 s.",
+    fact: 'With no solid surface to watch, scientists timed its day from waves in its rings (2019).',
   },
   {
     id: 'uranus',
@@ -109,7 +109,7 @@ export const PLANETS = [
     glow: '#6fd6dc',
     texture: 'textures/uranus.jpg',
     tagline: 'A planet rolling on its side',
-    fact: 'Uranus is tipped over by 98°. Near its poles the Sun stays up for about 42 years, then sets for 42 years — even though one spin takes only 17 hours.',
+    fact: 'Tipped on its side: near the poles the Sun stays up for 42 years, then sets for 42.',
   },
   {
     id: 'neptune',
@@ -124,7 +124,7 @@ export const PLANETS = [
     glow: '#4a66f0',
     texture: 'textures/neptune.jpg',
     tagline: 'Ninety thousand days in one year',
-    fact: 'Neptune needs 165 Earth years to circle the Sun, so one Neptune year holds about 89,700 of its 16-hour days. It completed its first orbit since its discovery only in 2011.',
+    fact: 'One Neptune year lasts 165 Earth years: about 89,700 of its 16-hour days.',
   },
 ];
 

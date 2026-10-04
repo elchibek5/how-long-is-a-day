@@ -183,3 +183,15 @@
   #calc .calc-step-title { margin-top: 0; }
   #calc .calc-answer { padding: 18px 16px; }
 }
+
+/* Simple mode: the answer card only, with a button that reveals the working. */
+#calc .calc.is-simple .calc-steps { display: none; }
+#calc .calc.is-simple .calc-body { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) {
+  #calc .calc.is-simple { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr); column-gap: 36px; align-items: start; }
+  #calc .calc.is-simple .calc-head { grid-column: 1; grid-row: 1; margin-bottom: 0; }
+  #calc .calc.is-simple .calc-body { grid-column: 2; grid-row: 1 / span 2; }
+  #calc .calc.is-simple .calc-toggle { grid-column: 1; grid-row: 2; justify-self: start; align-self: start; }
+}
+#calc .calc-toggle { margin-top: 20px; }
+#calc .calc-toggle[hidden] { display: none; }

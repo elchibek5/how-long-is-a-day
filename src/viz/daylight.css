@@ -325,3 +325,11 @@
   #daylight-lab .dl-ang-t { font-size: 13.5px; }
   #daylight-lab .dl-polar-t { font-size: 15px; }
 }
+
+/* Simple mode: hide the header, the declination stats, the formula and the chart until asked. */
+#daylight-lab .dl-simple .dl-head,
+#daylight-lab .dl-simple .dl-formula,
+#daylight-lab .dl-simple .dl-chart,
+#daylight-lab .dl-simple .dl-readout .dl-stat:nth-child(-n + 2) { display: none; }
+#daylight-lab .dl-more { margin-top: 18px; }
+#daylight-lab .dl-simple .dl-readout { grid-template-columns: repeat(2, minmax(0, 1fr)); }

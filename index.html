@@ -4,11 +4,34 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>How Long Is a Day? · The Geometry of Sunrise on Eight Worlds</title>
-    <meta name="description" content="A geometry investigation: why a day lasts 24 hours on Earth, under 10 hours on Jupiter and 117 Earth days on Venus, explained with angles, circles and tilt." />
-    <meta property="og:title" content="How Long Is a Day?" />
-    <meta property="og:description" content="The geometry of sunrise on eight worlds. A Geometry in the World midterm project." />
+    <meta name="description" content="Why is a day 24 hours on Earth, under 10 hours on Jupiter and 117 Earth days on Venus? An interactive 3D tour of the solar system that explains day length with simple geometry: spin, orbit and tilt." />
+    <meta name="keywords" content="day length, solar system, planets, sidereal day, solar day, geometry, math, astronomy, three.js, interactive, education" />
+    <meta name="author" content="Elchibek Dastanov" />
+    <link rel="canonical" href="https://elchibek5.github.io/how-long-is-a-day/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Long Is a Day? · The Geometry of Sunrise on Eight Worlds" />
+    <meta property="og:description" content="An interactive 3D tour of the solar system that explains why every planet has a different day length." />
+    <meta property="og:url" content="https://elchibek5.github.io/how-long-is-a-day/" />
+    <meta property="og:image" content="https://elchibek5.github.io/how-long-is-a-day/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#04050b" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='14' fill='%23ffb648'/%3E%3Cg stroke='%23ffb648' stroke-width='4' stroke-linecap='round'%3E%3Cpath d='M32 4v8M32 52v8M4 32h8M52 32h8M12 12l6 6M46 46l6 6M12 52l6-6M46 18l6-6'/%3E%3C/g%3E%3C/svg%3E" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LearningResource",
+        "name": "How Long Is a Day? The Geometry of Sunrise on Eight Worlds",
+        "description": "An interactive 3D explanation of why day length differs on every planet, using spin, orbit and tilt.",
+        "url": "https://elchibek5.github.io/how-long-is-a-day/",
+        "author": { "@type": "Person", "name": "Elchibek Dastanov" },
+        "educationalLevel": "High school, college",
+        "learningResourceType": "Interactive resource",
+        "teaches": ["Solar day vs sidereal day", "Angles and parallel lines", "Daylight and axial tilt"],
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "license": "https://opensource.org/licenses/MIT"
+      }
+    </script>
   </head>
   <body>
     <div id="loader" aria-hidden="true">
@@ -36,11 +59,11 @@
           <p class="eyebrow reveal">Geometry in the World · Midterm Project</p>
           <h1 class="hero-title reveal">How long is a <em>day</em>?</h1>
           <p class="hero-lede reveal">
-            On Earth, 24 hours. On Jupiter, less than 10. On Venus, 117 Earth days, and the Sun rises in the west.
-            I wanted to know why. The answer is hiding in a few circles, one small angle and a tilt.
+            24 hours on Earth. Under 10 on Jupiter. 117 Earth days on Venus, where the Sun rises in the west.
+            Why so different? The answer is geometry: a spin, an orbit and a tilt.
           </p>
           <div class="hero-pills reveal">
-            <span class="pill" style="--c: var(--sky)"><b>Jupiter</b> 9 h 56 m</span>
+            <span class="pill" style="--c: #e8b98a"><b>Jupiter</b> 9 h 56 m</span>
             <span class="pill" style="--c: #6fb6ff"><b>Earth</b> 24 h</span>
             <span class="pill" style="--c: #ff7b54"><b>Mars</b> 24 h 40 m</span>
             <span class="pill" style="--c: #f0c987"><b>Venus</b> 117 days</span>
@@ -65,105 +88,84 @@
           <div class="prose reveal">
             <h3>What I noticed</h3>
             <p>
-              Every day of my life has been 24 hours long, so I never questioned it. Then I saw this photo. It is a real
-              sunset on Mars, taken by NASA's Curiosity rover. Hills, a setting Sun, the end of a day. It looks almost like home,
-              except the sky glows <em>blue</em>.
+              This is a real sunset on Mars, photographed by NASA's Curiosity rover. It looks like an evening on Earth.
+              So I asked: <strong>how long is a day on Mars?</strong>
             </p>
-            <p>
-              It made me ask a simple question: <strong>if Mars has sunsets, how long is a day on Mars?</strong> My first guess
-              was that Mars gets maybe 4 hours of daylight. I was completely wrong, and the more planets I looked up, the
-              stranger the answers became.
-            </p>
+            <p>I guessed about 4 hours of daylight. I was wrong, and the real answers for the other planets surprised me even more.</p>
             <h3>Why it caught my attention</h3>
             <p>
-              A "day" sounds like a fact you memorize. But it is actually a <strong>geometric event</strong>: a point on a
-              spinning ball turning until it faces the Sun again. Change the spin, the orbit or the tilt and you change the day.
+              A day feels like a fixed fact. But it is really <strong>geometry</strong>: a spinning ball turning until it faces
+              the Sun again.
             </p>
           </div>
           <figure class="photo reveal">
             <img src="img/mars_sunset.jpg" width="1344" height="1080" alt="A blue-tinted sunset over the hills of Gale Crater on Mars, photographed by NASA's Curiosity rover." loading="lazy" />
             <figcaption>
-              <b>My evidence:</b> a real sunset in Gale Crater, Mars, 15 April 2015 (Curiosity rover, sol 956).
+              <b>My evidence:</b> sunset in Gale Crater, Mars, 15 April 2015.
               <span>Credit: NASA/JPL-Caltech/MSSS/Texas A&amp;M Univ.</span>
             </figcaption>
           </figure>
         </div>
 
-        <h3 class="section-title reveal">My first guesses vs. what is actually true</h3>
-        <p class="section-sub reveal">I wrote these down before doing any math. Every one of them was wrong, and each mistake pointed me to a better question.</p>
+        <h3 class="section-title reveal">My guesses vs. the truth</h3>
         <div class="guesses">
           <article class="guess panel reveal">
             <p class="guess-tag no">My guess</p>
-            <p class="guess-text">"Mars probably has about 4 hours of daylight."</p>
-            <p class="guess-tag yes">What's true</p>
-            <p>A Mars day (called a <em>sol</em>) is <b>24 h 39 m 35 s</b>. At the equator the Sun is up for about <b>12 h 20 m</b>, almost the same as Earth.</p>
+            <p class="guess-text">"Mars gets about 4 hours of daylight."</p>
+            <p class="guess-tag yes">The truth</p>
+            <p>A Mars day is <b>24 h 39 m</b>. The Sun is up for about <b>12 hours</b>, just like on Earth.</p>
           </article>
           <article class="guess panel reveal">
             <p class="guess-tag no">My guess</p>
-            <p class="guess-text">"Bigger planets spin slower, so their days are longer."</p>
-            <p class="guess-tag yes">What's true</p>
-            <p>Jupiter, the biggest planet, has the <b>shortest</b> day: <b>9 h 56 m</b>. Size does not decide the day.</p>
+            <p class="guess-text">"Bigger planets spin slower."</p>
+            <p class="guess-tag yes">The truth</p>
+            <p>Jupiter, the <b>biggest</b> planet, has the <b>shortest</b> day: <b>9 h 56 m</b>.</p>
           </article>
           <article class="guess panel reveal">
             <p class="guess-tag no">My guess</p>
-            <p class="guess-text">"A day is just one spin of the planet."</p>
-            <p class="guess-tag yes">What's true</p>
-            <p>Earth spins once in <b>23 h 56 m 4 s</b>, but a day is <b>24 h</b>. One spin is <b>not</b> one day. Why? That became my main question.</p>
-          </article>
-          <article class="guess panel reveal">
-            <p class="guess-tag no">My guess</p>
-            <p class="guess-text">"A day is always much shorter than a year."</p>
-            <p class="guess-tag yes">What's true</p>
-            <p>On Mercury one day lasts <b>two of its years</b>. On Venus one spin takes <b>longer than its year</b>.</p>
+            <p class="guess-text">"A day is one spin."</p>
+            <p class="guess-tag yes">The truth</p>
+            <p>Earth spins once in <b>23 h 56 m</b>, but a day is <b>24 h</b>. Where do the extra 4 minutes come from?</p>
           </article>
         </div>
 
         <h3 class="section-title reveal">Naming the geometry</h3>
-        <p class="section-sub reveal">A day turned out to be a story about three angles and one plane.</p>
         <div class="concepts">
           <article class="concept panel reveal" style="--c: var(--sky)">
             <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="22" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-width="2"/><path d="M40 18 A22 22 0 1 1 18.6 45" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M14 40 l4.6 5 l5-4.4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="40" r="3" fill="currentColor"/></svg>
             <h4>Spin angle</h4>
-            <p>How far the planet has turned on its axis. One full spin = 360°.</p>
+            <p>How far the planet has turned. One full spin = 360°.</p>
           </article>
           <article class="concept panel reveal" style="--c: var(--violet)">
             <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="26" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-dasharray="3 4" stroke-width="2"/><circle cx="40" cy="40" r="6" fill="var(--sun)"/><line x1="40" y1="40" x2="66" y2="40" stroke="currentColor" stroke-width="2"/><line x1="40" y1="40" x2="62.5" y2="27" stroke="currentColor" stroke-width="2"/><path d="M54 40 A14 14 0 0 0 52.1 33" fill="none" stroke="var(--rose)" stroke-width="3"/><circle cx="62.5" cy="27" r="4.5" fill="currentColor"/></svg>
             <h4>Orbit angle <i class="m">θ</i></h4>
-            <p>How far the planet has moved around the Sun. One full orbit (a year) = 360°.</p>
+            <p>How far it has moved around the Sun. One year = 360°.</p>
           </article>
           <article class="concept panel reveal" style="--c: var(--mint)">
             <svg viewBox="0 0 80 80" aria-hidden="true"><line x1="40" y1="8" x2="40" y2="72" stroke="currentColor" stroke-opacity=".45" stroke-dasharray="3 4" stroke-width="2"/><line x1="27" y1="10" x2="53" y2="70" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="40" cy="40" r="15" fill="none" stroke="currentColor" stroke-width="2"/><path d="M40 20 A20 20 0 0 0 32 21.6" fill="none" stroke="var(--rose)" stroke-width="3"/></svg>
-            <h4>Tilt angle</h4>
-            <p>The angle between the spin axis and "straight up" from the orbit. Earth: 23.4°. Uranus: 97.8°.</p>
-          </article>
-          <article class="concept panel reveal" style="--c: var(--sun)">
-            <svg viewBox="0 0 80 80" aria-hidden="true"><defs><clipPath id="half"><rect x="0" y="0" width="40" height="80"/></clipPath></defs><circle cx="40" cy="40" r="22" fill="#1b2350"/><circle cx="40" cy="40" r="22" fill="currentColor" clip-path="url(#half)"/><line x1="40" y1="12" x2="40" y2="68" stroke="#fff" stroke-width="2"/><path d="M4 28h10M4 40h10M4 52h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            <h4>The day–night plane</h4>
-            <p>Sunlight lights exactly half of a ball. The edge, called the <em>terminator</em>, is a great circle through the center.</p>
+            <h4>Tilt</h4>
+            <p>How far the spin axis leans. Earth: 23.4°. Uranus: 98°, almost on its side.</p>
           </article>
         </div>
 
         <div class="questions panel reveal">
-          <p class="eyebrow">The questions I investigated</p>
+          <p class="eyebrow">My two questions</p>
           <ol>
-            <li>Why is a day on Earth <b>24 hours</b> if Earth spins once in <b>23 h 56 m</b>?</li>
-            <li>Is there <b>one rule</b> that explains Earth's 24 hours, Mercury's 176 days and Venus's backwards Sun?</li>
-            <li>How long is the Sun actually <b>up</b>, and why does that change with <b>where you stand</b> and the <b>season</b>?</li>
+            <li>Why is a day <b>longer than one spin</b>, and can <b>one rule</b> predict the day on every planet?</li>
+            <li>Why does <b>tilt</b> change how long the Sun stays up?</li>
           </ol>
         </div>
 
         <div class="tour-intro reveal">
-          <p class="eyebrow">Next: a tour of eight worlds</p>
+          <p class="eyebrow">A tour of eight worlds</p>
           <p>
-            Keep scrolling to fly past every planet. Each one spins at its <b>true relative speed</b>
-            (one Earth spin = 10 seconds on screen), with its <b>real tilt</b>. The dashed line is "straight up" from the orbit,
-            the colored line is the spin axis, and the angle between them is the tilt. Sunlight comes from the left, so you can
-            see day and night on every planet.
+            Scroll to fly past every planet. Each one has its <b>real tilt</b> and spins at its <b>true relative speed</b>
+            (one Earth spin = 10 seconds). Sunlight comes from the left, so you can see day and night.
           </p>
         </div>
       </section>
 
-      <!-- ============================== TOUR (built by main.js) ============================== -->
+      <!-- ============================== TOUR (built from the planet data) ============================== -->
       <section id="tour" aria-label="Tour of the eight planets"></section>
 
       <!-- ============================== 2 · EXPLAIN ============================== -->
@@ -172,203 +174,111 @@
           <span class="part-num">02</span>
           <div>
             <p class="eyebrow">Explain the mathematics</p>
-            <h2>A day is an angle</h2>
+            <h2>One spin is not one day</h2>
           </div>
         </header>
 
         <!-- 2.1 -->
         <div class="block">
-          <h3 class="block-title reveal"><span>2.1</span> Turning time into angles</h3>
-          <div class="grid-2 align-center">
-            <div class="prose reveal">
-              <p>
-                A spinning planet is a rotating circle. If one full turn of 360° takes a time <i class="m">T</i>, then every hour
-                the planet turns <b>360° ÷ <i class="m">T</i></b>. This is called angular speed.
-              </p>
-              <div class="formula" data-tex="\omega = \dfrac{360^\circ}{T} \qquad \text{Earth: } \dfrac{360^\circ}{24\text{ h}} = 15^\circ \text{ per hour}"></div>
-              <p>
-                That 15° is real geography: <b>time zones are about 15° of longitude wide</b>, because the Sun appears to move
-                15° across the sky every hour. Our clocks are secretly protractors.
-              </p>
-              <p>
-                The same formula works on every world. Jupiter turns <b>36.3° every hour</b>. Venus turns only
-                <b>0.06° per hour</b>, and backwards.
-              </p>
+          <h3 class="block-title reveal"><span>2.1</span> The missing angle</h3>
+          <p class="section-sub reveal">Follow one person standing on a planet at noon. Scroll slowly: the picture moves with you.</p>
+          <div id="solarday" class="scrolly">
+            <div class="scrolly-graphic"></div>
+            <div class="scrolly-steps">
+              <div class="step" data-step="0">
+                <h4>Noon</h4>
+                <p>The Sun is straight overhead. The blue line points from the planet's center, through our person, to the Sun.</p>
+              </div>
+              <div class="step" data-step="1">
+                <h4>One full spin: 360°</h4>
+                <p>The planet turns once (on Earth: 23 h 56 m). But it also moved along its orbit, so the Sun is <b>not</b> overhead yet.</p>
+              </div>
+              <div class="step" data-step="2">
+                <h4>The missing angle <i class="m">θ</i></h4>
+                <p>The person's line is <b>parallel</b> to the start line: both point at the same faraway star. The line to the Sun crosses both, so the two <i class="m">θ</i> angles are <b>alternate angles, and alternate angles are equal</b>.</p>
+              </div>
+              <div class="step" data-step="3">
+                <h4>Turn <i class="m">θ</i> more</h4>
+                <p>Turning the extra <i class="m">θ</i> brings noon back. So <b>one day = 360° + <i class="m">θ</i></b>.</p>
+              </div>
+              <div class="step" data-step="4">
+                <h4>Earth's numbers</h4>
+                <p><i class="m">θ</i> = 360° ÷ 365.26 days ≈ <b>0.986°</b>. Turning that extra bit takes <b>3 min 56 s</b>, and 23 h 56 m 4 s + 3 m 56 s = <b>24 h</b>.</p>
+              </div>
+              <div class="step" data-step="5">
+                <h4>Spinning backwards</h4>
+                <p>Venus spins against its orbit, so it needs only <b>360° − <i class="m">θ</i></b>. That's why its day (117 Earth days) is shorter than its spin (243).</p>
+              </div>
             </div>
-            <div id="dial" class="panel reveal"></div>
           </div>
         </div>
 
         <!-- 2.2 -->
         <div class="block">
-          <h3 class="block-title reveal"><span>2.2</span> Why one spin is not one day</h3>
-          <p class="section-sub reveal">Follow a person standing on a planet at noon. Scroll slowly: the diagram moves with you.</p>
-          <div id="solarday" class="scrolly">
-            <div class="scrolly-graphic"></div>
-            <div class="scrolly-steps">
-              <div class="step" data-step="0">
-                <h4>Start at noon</h4>
-                <p>Our person is standing where the Sun is straight overhead; the blue line points from the planet's center through them, right at the Sun. The planet is also moving along its orbit.</p>
-              </div>
-              <div class="step" data-step="1">
-                <h4>One full spin: 360°</h4>
-                <p>The planet turns all the way around once. On Earth this takes 23 h 56 m 4 s, called a <em>sidereal day</em> ("star day"), because the person now points at the same distant star as before. But the planet has moved along its orbit, so the Sun is <b>not</b> overhead yet.</p>
-              </div>
-              <div class="step" data-step="2">
-                <h4>The missing angle <i class="m">θ</i></h4>
-                <p>The planet moved through an angle <i class="m">θ</i> around the Sun. The person's line is <b>parallel</b> to where it started (both point at the same far-away star). The line to the Sun cuts across these two parallel lines, so the two angles marked <i class="m">θ</i> are <b>alternate angles, and alternate angles are equal</b>. The person is exactly <i class="m">θ</i> short of noon.</p>
-              </div>
-              <div class="step" data-step="3">
-                <h4>Turn a little more</h4>
-                <p>After turning the extra <i class="m">θ</i>, the Sun is overhead again. So one <b>solar day</b>, the day our clocks measure, is a spin of <b>360° + <i class="m">θ</i></b>.</p>
-              </div>
-              <div class="step" data-step="4">
-                <h4>Earth's real numbers</h4>
-                <p>Earth goes 360° around the Sun in 365.26 days, so <i class="m">θ</i> ≈ 360° ÷ 365.26 ≈ <b>0.986° per day</b>. Turning that extra 0.986° takes about <b>3 min 56 s</b>. And 23 h 56 m 4 s + 3 m 56 s = <b>24 h</b>. The mystery is solved by an angle smaller than one degree.</p>
-              </div>
-              <div class="step" data-step="5">
-                <h4>What if a planet spins backwards?</h4>
-                <p>Venus spins the opposite way to its orbit. Now the orbit <em>helps</em>: the Sun comes back after a turn of only <b>360° − <i class="m">θ</i></b>. That is why a Venus day (117 Earth days) is <b>shorter</b> than one Venus spin (243 Earth days).</p>
-              </div>
+          <h3 class="block-title reveal"><span>2.2</span> One rule for every planet</h3>
+          <div class="grid-2">
+            <ol class="deriv reveal">
+              <li>
+                <p>In one day <i class="m">T</i>, the planet moves around the Sun by <i class="m">θ</i> and spins by 360° + <i class="m">θ</i>:</p>
+                <div class="formula" data-tex="\theta = 360^\circ \cdot \frac{T}{T_{\text{year}}} \qquad 360^\circ \cdot \frac{T}{T_{\text{spin}}} = 360^\circ + \theta"></div>
+              </li>
+              <li class="key">
+                <p>Put them together and divide by 360° · <i class="m">T</i>:</p>
+                <div class="formula big" data-tex="\boxed{\;\frac{1}{T} = \frac{1}{T_{\text{spin}}} - \frac{1}{T_{\text{year}}}\;}"></div>
+                <p>For a backwards spin (360° − <i class="m">θ</i>), the minus becomes a plus.</p>
+              </li>
+            </ol>
+            <div class="note panel reveal">
+              <p class="eyebrow">Mercury's strange day, solved</p>
+              <p>Mercury spins exactly 3 times every 2 orbits, so <i class="m">T</i><sub>spin</sub> = ⅔ of a year. The rule gives:</p>
+              <div class="formula" data-tex="\frac{1}{T} = \frac{3}{2\,T_{\text{year}}} - \frac{1}{T_{\text{year}}} = \frac{1}{2\,T_{\text{year}}} \;\Rightarrow\; T = 2\text{ years}"></div>
+              <p>One day on Mercury lasts <b>two of its years</b>.</p>
             </div>
           </div>
+          <div id="calc" class="reveal"></div>
         </div>
 
         <!-- 2.3 -->
         <div class="block">
-          <h3 class="block-title reveal"><span>2.3</span> From the picture to one formula</h3>
-          <div class="grid-2">
-            <ol class="deriv reveal">
-              <li>
-                <p>Call the solar day <i class="m">T</i>, one spin <i class="m">T</i><sub>spin</sub> and one year <i class="m">T</i><sub>year</sub>. In time <i class="m">T</i> the planet moves along its orbit by the angle</p>
-                <div class="formula" data-tex="\theta = 360^\circ \cdot \frac{T}{T_{\text{year}}}"></div>
-              </li>
-              <li>
-                <p>In that same time it spins by</p>
-                <div class="formula" data-tex="360^\circ \cdot \frac{T}{T_{\text{spin}}}"></div>
-              </li>
-              <li>
-                <p>The diagram showed that spin = 360° + θ, so</p>
-                <div class="formula" data-tex="360^\circ \cdot \frac{T}{T_{\text{spin}}} = 360^\circ + 360^\circ \cdot \frac{T}{T_{\text{year}}}"></div>
-              </li>
-              <li>
-                <p>Divide every term by 360° · <i class="m">T</i>:</p>
-                <div class="formula" data-tex="\frac{1}{T_{\text{spin}}} = \frac{1}{T} + \frac{1}{T_{\text{year}}}"></div>
-              </li>
-              <li class="key">
-                <p>Rearrange. This one line predicts the day on <b>any</b> planet:</p>
-                <div class="formula big" data-tex="\boxed{\;\frac{1}{T} = \frac{1}{T_{\text{spin}}} - \frac{1}{T_{\text{year}}}\;}"></div>
-              </li>
-              <li>
-                <p>For a backwards spin (360° − θ) the sign flips, and the two rotations add:</p>
-                <div class="formula" data-tex="\frac{1}{T} = \frac{1}{T_{\text{spin}}} + \frac{1}{T_{\text{year}}}"></div>
-              </li>
-            </ol>
-            <div class="side reveal">
-              <div class="note panel">
-                <p class="eyebrow">Same math on your wall clock</p>
-                <p>
-                  The minute hand laps the hour hand the same way a planet's spin "laps" its orbit. Using the formula with
-                  1 hour and 12 hours:
-                </p>
-                <div class="formula" data-tex="\frac{1}{T} = \frac{1}{1\text{ h}} - \frac{1}{12\text{ h}} = \frac{11}{12\text{ h}} \;\Rightarrow\; T = 1\text{ h } 5\text{ m } 27\text{ s}"></div>
-                <p>Check any clock: the hands overlap at about 12:00, 1:05, 2:11, 3:16… exactly every 1 h 5 m 27 s.</p>
-              </div>
-              <div class="note panel">
-                <p class="eyebrow">Mercury's strange day, in one line</p>
-                <p>Mercury spins exactly 3 times for every 2 orbits, so <i class="m">T</i><sub>spin</sub> = ⅔ <i class="m">T</i><sub>year</sub>:</p>
-                <div class="formula" data-tex="\frac{1}{T} = \frac{3}{2T_{\text{year}}} - \frac{1}{T_{\text{year}}} = \frac{1}{2T_{\text{year}}} \;\Rightarrow\; T = 2\,T_{\text{year}}"></div>
-                <p>One Mercury day lasts exactly <b>two Mercury years</b>. The fractions explain the weirdest fact on this page.</p>
-              </div>
-            </div>
-          </div>
-          <div id="calc" class="reveal" style="margin-top: 56px"></div>
-        </div>
-
-        <!-- 2.4 -->
-        <div class="block">
-          <h3 class="block-title reveal"><span>2.4</span> How long is the Sun up?</h3>
+          <h3 class="block-title reveal"><span>2.3</span> Why tilt changes daylight</h3>
           <div class="grid-2">
             <div class="prose reveal">
               <p>
-                Sunlight arrives in parallel rays, so it lights <b>exactly half</b> of a ball. The boundary between day and
-                night is a great circle: a flat plane through the planet's center, perpendicular to the sunlight.
+                Sunlight always lights <b>exactly half</b> of a planet. As the planet spins, you ride around your
+                <b>circle of latitude</b>. The part of that circle in sunlight is the part of the day you get light:
               </p>
-              <p>
-                As the planet spins, you ride around on your <b>circle of latitude</b>. The fraction of that circle that is in
-                sunlight is the fraction of the day that you get daylight.
-              </p>
-              <p>
-                <b>No tilt:</b> the day–night plane passes through both poles and cuts every latitude circle exactly in half.
-                Everyone gets 50% daylight, every day of the year. <b>With tilt:</b> as the planet orbits, the Sun is overhead
-                at a different latitude <i class="m">δ</i> (the Sun's <em>declination</em>), the plane cuts the circles unevenly,
-                and we get seasons.
-              </p>
+              <div class="formula" data-tex="\text{daylight} = \frac{\text{lit part of your circle}}{360^\circ} \times \text{one day}"></div>
             </div>
             <div class="prose reveal">
-              <p>Working out where the plane cuts your circle (with a little trigonometry) gives the half-arc of daylight <i class="m">H</i><sub>0</sub>:</p>
-              <div class="formula big" data-tex="\cos H_0 = -\tan\varphi \cdot \tan\delta"></div>
-              <div class="formula" data-tex="\text{daylight} = \frac{2H_0}{360^\circ} \times T \qquad \sin\delta = \sin(\text{tilt})\cdot\sin(\text{season angle})"></div>
               <p>
-                <i class="m">φ</i> is your latitude and <i class="m">T</i> is the solar day from 2.3. If
-                <i class="m">tan φ · tan δ</i> goes above 1 or below −1, the equation has no solution (a cosine can't be
-                bigger than 1), and that is exactly what happens in nature: there is no sunrise or sunset at all. The Sun
-                circles the sky all day (midnight sun) or never rises (polar night). This happens beyond latitude
-                90° − tilt, the <b>polar circles</b>.
+                <b>No tilt:</b> every circle is cut exactly in half, so everyone gets half a day of light (12 h on Earth), all year.
+                <b>With tilt:</b> one half of the planet leans toward the Sun. Its circles are more than half lit (summer), the
+                other half's less (winter). Near the poles a circle can be <b>all</b> lit (midnight sun) or <b>all</b> dark.
               </p>
             </div>
           </div>
           <div id="daylight-lab" class="reveal"></div>
-          <div class="grid-2 checks">
-            <div class="note panel reveal">
-              <p class="eyebrow">Checking my model against reality</p>
-              <p>
-                For San Francisco (37.8° N) on the June solstice my formula gives <b>14 h 37 m</b> of daylight. The real
-                sunrise-to-sunset time is about <b>14 h 47 m</b>. My model is 10 minutes short, because Earth's air bends
-                sunlight over the horizon and the Sun is a disk, not a point. Still within about 1%.
-              </p>
-            </div>
-            <div class="note panel reveal">
-              <p class="eyebrow">Uranus breaks the pattern</p>
-              <p>
-                Uranus is tilted 97.8°, so its polar circles sit just 7.8° from the equator. Almost the whole planet gets
-                a midnight sun at some point. Near the poles, the Sun stays up for about <b>42 Earth years</b>, then
-                disappears for 42 years, on a planet that spins once every 17 hours.
-              </p>
-            </div>
-          </div>
+          <p class="check reveal">
+            <b>Checking my model:</b> it predicts 14 h 37 m of daylight in San Francisco in June. The real number is 14 h 47 m.
+            The 10 minutes come from Earth's air bending sunlight, which pure geometry leaves out.
+          </p>
         </div>
 
-        <!-- 2.5 -->
+        <!-- 2.4 -->
         <div class="block">
-          <h3 class="block-title reveal"><span>2.5</span> All eight worlds on one scale</h3>
-          <p class="section-sub reveal">Blue dot = one spin. Gold dot = one solar day. The formula from 2.3 predicts the gap between them.</p>
-          <div id="compare" class="reveal"></div>
-        </div>
-
-        <!-- 2.6 -->
-        <div class="block">
-          <h3 class="block-title reveal"><span>2.6</span> Why this matters</h3>
+          <h3 class="block-title reveal"><span>2.4</span> Why this matters</h3>
           <div class="matters">
             <article class="matter panel reveal">
-              <p class="eyebrow">Living on Mars time</p>
-              <p>When NASA landed the Spirit and Opportunity rovers in 2004, the team lived on Mars time, starting work about 40 minutes later every day, wearing watches adjusted to run on Mars time. Future astronauts will need clocks and calendars built on a 24 h 39 m 35 s sol, about 668.6 sols per Martian year.</p>
+              <p class="eyebrow">Mars missions</p>
+              <p>Rover teams have lived on Mars time, starting work 40 minutes later every day. Future astronauts will need clocks built on a 24 h 39 m day.</p>
             </article>
             <article class="matter panel reveal">
-              <p class="eyebrow">Solar power &amp; sustainability</p>
-              <p>The daylight formula tells engineers how many hours of sunshine a solar panel gets at any latitude and season, on Earth for solar farms, and on Mars for rovers that plan each day around their sunlight.</p>
+              <p class="eyebrow">Solar energy</p>
+              <p>Hours of daylight decide how much power a solar panel makes, on Earth and on Mars. The tilt geometry predicts them for any place and season.</p>
             </article>
             <article class="matter panel reveal">
-              <p class="eyebrow">Life above the Arctic Circle</p>
-              <p>In Utqiaġvik, Alaska (71.3° N) the Sun does not rise for about 65 days each winter. My pure-geometry model predicts 73 days; the air bending sunlight explains the difference. Communities plan energy, health and food around these numbers.</p>
-            </article>
-            <article class="matter panel reveal">
-              <p class="eyebrow">Telescopes &amp; satellites</p>
-              <p>Stars return 3 m 56 s earlier every night, because they follow the 23 h 56 m spin, not the 24 h solar day. Observatories and satellite operators keep "sidereal time" for exactly this reason.</p>
-            </article>
-            <article class="matter panel reveal">
-              <p class="eyebrow">Worlds with endless days</p>
-              <p>Many planets around small red stars probably spin exactly once per orbit. Then 1/T<sub>spin</sub> − 1/T<sub>year</sub> = 0, and the day is infinitely long: one side always day, one side always night. Scientists wonder if life could exist in the twilight ring between them.</p>
+              <p class="eyebrow">Life in the Arctic</p>
+              <p>In Utqiaġvik, Alaska, the Sun does not rise for about 65 days each winter. That's the tilt geometry at work, and people plan their lives around it.</p>
             </article>
           </div>
         </div>
@@ -387,14 +297,13 @@
         <div class="grid-2 align-center">
           <div class="prose reveal">
             <p class="lead">
-              I turned the daylight formula into art. Each mandala is <b>one planet's whole year of sunlight in a single
-              circle</b>, every latitude and every season at once. Every pixel is calculated with
-              <i class="m">cos H<sub>0</sub> = −tan φ · tan δ</i>.
+              I turned the daylight geometry into art. Each mandala shows <b>one planet's whole year of sunlight</b> in a
+              single circle. Every pixel is calculated.
             </p>
             <ul class="legend-list">
-              <li><b>Angle = season.</b> Start at the top (spring) and go clockwise through one full orbit: 360° = one year.</li>
-              <li><b>Distance from the center = latitude.</b> South pole in the middle, equator in the middle ring, north pole on the edge.</li>
-              <li><b>Color = how much of the day the Sun is up,</b> from deep night (0%) through rose (exactly half) to warm white (the Sun never sets).</li>
+              <li><b>Angle = season.</b> Start at the top (spring) and go clockwise: once around = one year.</li>
+              <li><b>Distance from the center = latitude.</b> South pole in the middle, north pole on the edge.</li>
+              <li><b>Color = how long the Sun is up.</b> Dark = night, rose = exactly half the day, white = the Sun never sets.</li>
             </ul>
           </div>
           <div class="legend panel reveal">
@@ -426,50 +335,38 @@
         <div id="mandala-gallery" class="reveal"></div>
 
         <p class="gallery-insight reveal">
-          <b>What my own art showed me:</b> Earth, Mars, Saturn and Neptune draw almost the <em>same</em> mandala, because their
-          tilts are almost the same (23°–28°). Distance from the Sun, size and day length do not change the shape at all.
-          <b>Only the tilt does.</b>
+          <b>What my art showed me:</b> Earth, Mars, Saturn and Neptune draw almost the <em>same</em> mandala because their
+          tilts are almost the same. Size, distance and day length don't change the shape. <b>Only tilt does.</b>
         </p>
 
-        <h3 class="section-title reveal">The choices I made, and the math behind them</h3>
+        <h3 class="section-title reveal">My choices, and the math behind them</h3>
         <div class="choices">
           <article class="choice panel reveal">
             <span class="choice-num">1</span>
-            <h4>A circle for the year</h4>
-            <p>Seasons repeat, so I drew the year as a circle: the angle around the mandala is the planet's angle around the Sun. One orbit = 360°.</p>
+            <h4>A circle for a year</h4>
+            <p>Seasons repeat, so 360° around the mandala = 360° around the Sun.</p>
           </article>
           <article class="choice panel reveal">
             <span class="choice-num">2</span>
-            <h4>Fractions, not hours</h4>
-            <p>I colored by the <em>fraction</em> of the day, not hours. That way a 10-hour Jupiter day and a 24-hour Earth day are compared fairly, by shape alone.</p>
+            <h4>Rose means "exactly half"</h4>
+            <p>The equator and the two equinoxes are always rose (12 h of light in 24 h): a built-in check that my math is right.</p>
           </article>
           <article class="choice panel reveal">
             <span class="choice-num">3</span>
-            <h4>Rose means "exactly half"</h4>
-            <p>The equator ring and the two equinox spokes are always rose (50% daylight) on every planet. It's a built-in check: if they weren't, my math would be wrong.</p>
-          </article>
-          <article class="choice panel reveal">
-            <span class="choice-num">4</span>
-            <h4>The yin-yang symmetry</h4>
-            <p>Half a year later, every place gets the opposite: 70% daylight in June means 30% in December. Algebraically, δ becomes −δ, so cos H₀ changes sign. That makes each mandala look like a yin-yang.</p>
-          </article>
-          <article class="choice panel reveal">
-            <span class="choice-num">5</span>
-            <h4>Contour lines by solving backwards</h4>
-            <p>The thin lines mark exactly 25%, 50% and 75% daylight. I found them by solving the formula for the latitude: φ = arctan(−cos(180°·f) ÷ tan δ).</p>
+            <h4>Yin-yang symmetry</h4>
+            <p>Half a year later every place gets the opposite: 70% daylight in June means 30% in December.</p>
           </article>
         </div>
 
         <h3 class="section-title reveal">Design your own world</h3>
-        <p class="section-sub reveal">Choose a spin, a year and a tilt. The formula computes the day, and the mandala draws your planet's year of sunlight. Download it and keep it.</p>
+        <p class="section-sub reveal">Pick a spin, a year and a tilt. The rule from 2.2 computes the day, and the mandala draws your planet's year of sunlight.</p>
         <div id="world-lab" class="reveal"></div>
 
         <div class="wonder panel reveal">
           <p class="eyebrow">What I hope you notice, and wonder</p>
-          <div class="grid-3">
-            <p><b>Notice</b> that Earth and Mars draw nearly the same mandala. We are tilt twins, which is why Mars has seasons like ours.</p>
-            <p><b>Wonder</b> what life would feel like on Uranus, where the Sun can stay up for 42 years and then vanish for 42 more.</p>
-            <p><b>Wonder</b> what a Mars calendar would look like, with 668.6 sols in one year. Would you round to 668 or 669?</p>
+          <div class="grid-2">
+            <p><b>Notice</b> that Earth and Mars draw nearly the same mandala. They are "tilt twins", so Mars has seasons like ours.</p>
+            <p><b>Wonder</b> what life would be like on Uranus, where the Sun can stay up for 42 years and then disappear for 42 more.</p>
           </div>
         </div>
       </section>
@@ -480,44 +377,31 @@
           <span class="part-num">04</span>
           <div>
             <p class="eyebrow">Mathematical mindset</p>
-            <h2>What changed in my thinking</h2>
+            <h2>What I learned</h2>
           </div>
         </header>
 
-        <div class="grid-2">
-          <div class="prose reveal">
-            <h3>My mistakes moved me forward</h3>
-            <p>
-              My "4 hours on Mars" guess was wrong, but checking it made me notice that Earth's spin (23 h 56 m) and Earth's day
-              (24 h) are different. That small gap became the center of the whole project. If I had been right at the start,
-              I would never have found the 360° + θ idea.
-            </p>
-            <h3>Assumptions I had to question</h3>
-            <ul class="assume">
-              <li><b>"The Sun is a point and there is no air."</b> Real daylight in San Francisco is 10 minutes longer than my model, and Utqiaġvik's polar night is 8 days shorter. The atmosphere bends light.</li>
-              <li><b>"Orbits are circles."</b> Mercury's orbit is an ellipse. Near the Sun it moves so fast that, from some places, the Sun rises, stops, goes backwards and rises again. My circle model gets the <em>average</em> day right but misses this wobble.</li>
-              <li><b>"The season doesn't change during one day."</b> True on Earth (a day is 1/365 of a year), false on Mercury, where a day is two years. So I treat my daylight numbers for Mercury and Venus as approximations.</li>
-              <li><b>"Numbers in tables are final."</b> Saturn's day was corrected in 2019 using waves in its rings, and Uranus's in 2025 using Hubble. Many tables still print the old values. Even scientists keep revising.</li>
-            </ul>
-          </div>
-          <div class="prose reveal">
-            <h3>How my thinking grew</h3>
-            <p>
-              I started with a list of strange facts and ended with one formula that explains all of them. A day is not a number
-              you memorize; it is what happens when two rotations race each other, plus a tilt that decides who gets the light.
-            </p>
-            <p>
-              The hardest part was step 2.2: I could not see why the extra angle had to be exactly θ until I drew the two lines
-              pointing at the same distant star and recognized <b>parallel lines cut by a transversal</b>, something from
-              basic geometry hiding in the solar system.
-            </p>
-            <h3>What I still wonder</h3>
-            <ul class="assume">
-              <li>Could a moon of Jupiter have a "day" controlled by Jupiter instead of the Sun?</li>
-              <li>If people lived on Mars, would their bodies adjust to 24 h 39 m days?</li>
-              <li>Is there a planet somewhere with a day of exactly one year, and what is the weather like on the line between its day and night sides?</li>
-            </ul>
-          </div>
+        <div class="learned">
+          <article class="learn panel reveal">
+            <p class="eyebrow">A wrong guess started it</p>
+            <p>My "4 hours on Mars" guess made me compare Earth's spin (23 h 56 m) with its day (24 h). That small gap became this whole project.</p>
+          </article>
+          <article class="learn panel reveal">
+            <p class="eyebrow">I tested my model</p>
+            <p>My geometry is 10 minutes off in San Francisco because it leaves out the air. Knowing what a model ignores is part of the math.</p>
+          </article>
+          <article class="learn panel reveal">
+            <p class="eyebrow">Science keeps updating</p>
+            <p>Saturn's day was corrected in 2019 and Uranus's in 2025. Many tables still print the old numbers; I used the newest ones.</p>
+          </article>
+        </div>
+
+        <div class="still-wonder reveal">
+          <p class="eyebrow">What I still wonder</p>
+          <p>
+            Some planets spin exactly once per orbit. Then 1/<i class="m">T</i><sub>spin</sub> − 1/<i class="m">T</i><sub>year</sub> = 0,
+            and the day lasts <b>forever</b>: one side always day, the other always night. Could anything live on the line between them?
+          </p>
         </div>
       </section>
     </main>
@@ -527,17 +411,18 @@
         <div>
           <p class="eyebrow">Sources</p>
           <ul>
-            <li><a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/" target="_blank" rel="noopener">NASA NSSDC Planetary Fact Sheets</a>: spin, year, tilt, solar day</li>
-            <li><a href="https://science.nasa.gov/solar-system/scientists-finally-know-what-time-it-is-on-saturn/" target="_blank" rel="noopener">NASA/JPL (2019): Scientists finally know what time it is on Saturn</a>, 10 h 33 m 38 s</li>
-            <li><a href="https://esahubble.org/news/heic2503/" target="_blank" rel="noopener">ESA/Hubble (2025): Uranus' rotation measured</a>, 17 h 14 m 52 s</li>
+            <li><a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/" target="_blank" rel="noopener">NASA Planetary Fact Sheets</a>: spin, year, tilt and day length</li>
+            <li><a href="https://science.nasa.gov/solar-system/scientists-finally-know-what-time-it-is-on-saturn/" target="_blank" rel="noopener">NASA (2019)</a>: Saturn's day, 10 h 33 m 38 s</li>
+            <li><a href="https://esahubble.org/news/heic2503/" target="_blank" rel="noopener">ESA/Hubble (2025)</a>: Uranus's day, 17 h 14 m 52 s</li>
             <li><a href="https://photojournal.jpl.nasa.gov/catalog/PIA19400" target="_blank" rel="noopener">NASA Photojournal PIA19400</a>: sunset in Gale Crater</li>
-            <li><a href="https://gml.noaa.gov/grad/solcalc/" target="_blank" rel="noopener">NOAA Solar Calculator</a>: sunrise equation and real sunrise times</li>
-            <li>Planet textures: <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener">Solar System Scope</a> (CC BY 4.0) and the three.js examples (NASA Blue Marble)</li>
+            <li><a href="https://gml.noaa.gov/grad/solcalc/" target="_blank" rel="noopener">NOAA Solar Calculator</a>: real sunrise and sunset times</li>
+            <li>Planet textures: <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener">Solar System Scope</a> (CC BY 4.0) and three.js examples (NASA Blue Marble)</li>
           </ul>
         </div>
         <div class="footer-by">
           <p class="eyebrow">Geometry in the World · Midterm</p>
-          <p>Made by Elchibek Dastanov with HTML, CSS, JavaScript and three.js. Every number on this page is computed live from the formulas above.</p>
+          <p>Made by Elchibek Dastanov. Every number on this page is computed from the formulas above.</p>
+          <p><a href="https://github.com/elchibek5/how-long-is-a-day" target="_blank" rel="noopener">Open source on GitHub</a> (MIT license). Free to use in your classroom.</p>
         </div>
       </div>
     </footer>
